@@ -3,4 +3,6 @@
 *.pyc
 .env
 /.vscode
-app.py
+/app.py
+app
+app.py"app.py" 
