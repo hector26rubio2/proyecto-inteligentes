@@ -14,5 +14,5 @@ cd demo-flask-files
 
 3. Instalar las dependencias
 ```sh
-pip install -r requiriments.txt
+pip install -r requirements.txt
 ```
