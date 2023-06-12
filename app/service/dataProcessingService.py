@@ -97,3 +97,12 @@ class DataProcessingService :
             return {key: type(value).__name__ for key, value in firstRecordDict.items()}
         except Exception as error:
             raise error
+          
+          
+  def getDataset(self):
+    file_names = []
+    for file_name in os.listdir(self.DIRECTORY):
+        if os.path.isfile(os.path.join(self.DIRECTORY, file_name)):
+            file_names.append(file_name)
+    return file_names
+    

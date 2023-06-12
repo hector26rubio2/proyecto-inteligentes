@@ -1,5 +1,5 @@
 from fastapi import APIRouter ,Response, status
-from typing import Union
+from typing import Union,List
 
 from fastapi import UploadFile
 
@@ -56,5 +56,16 @@ async def descriptFile(dataset :str, response: Response):
     Error(message=error )
     
 
-
+@router.get("/datasets",
+            status_code=200, 
+            response_model = Union[List[str], Error])
+async def getDatasets( response: Response):
+  try:
+    return dataProcessingService.getDataset()
+    
+    
+  except Exception as error:
+    print(error)
+    response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+    Error(message=error )
   
