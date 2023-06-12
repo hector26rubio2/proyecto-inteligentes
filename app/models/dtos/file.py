@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 from fastapi import UploadFile
 
-class FileDTO(BaseModel):
+class FileDTO(UploadFile):
   file: UploadFile
