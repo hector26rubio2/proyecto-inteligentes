@@ -2,9 +2,12 @@ from fastapi import APIRouter ,Response, status
 from typing import Union
 
 from fastapi import UploadFile
-from app.models.dtos.upLoadFile import UploadFileM
-from app.models.excepts.error import Error
-from app.service.dataProcessingService import DataProcessingService
+
+from ..models.dtos.nameDatase import NameDatase
+
+from ..models.dtos.upLoadFile import UploadFileM
+from ..models.excepts.error import Error
+from ..service.dataProcessingService import DataProcessingService
 
 
 router = APIRouter(
@@ -13,6 +16,11 @@ router = APIRouter(
 )
 dataProcessingService= DataProcessingService()
 ALLOWED_EXTENSIONS = {'xlsx', 'csv'}
+
+
+
+
+
 
 @router.post("/loadFile",
             status_code=200, 
@@ -28,6 +36,25 @@ async def fileUpload(file :UploadFile, response: Response):
   except Exception as error:
     print(error)
     response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
-    
+
+
   
+@router.post("/descriptFile",
+            status_code=200, 
+            response_model = Union[dict, Error])
+async def descriptFile(dataset :str, response: Response):
+  try:
+    statusFile,msg = dataProcessingService.describeDataset(dataset)
+    if not statusFile :
+      response.status_code = status.HTTP_404_NOT_FOUND
+      return Error(message=msg )
+    return msg
+    
+  except Exception as error:
+    print(error)
+    response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+    Error(message=error )
+    
+
+
   
