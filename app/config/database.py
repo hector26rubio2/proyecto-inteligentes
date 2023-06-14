@@ -12,3 +12,6 @@ class ConfigDatabase:
   
   def getDB(self):
     return self.db
+  
+  def getBDModels(self):
+    return self._client.get_database(Config.MONGO_DBNAME_MODELS).models_collection 

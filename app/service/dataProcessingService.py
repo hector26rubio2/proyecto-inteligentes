@@ -112,11 +112,11 @@ class DataProcessingService :
           
           
   def getDataset(self):
-    file_names = []
-    for file_name in os.listdir(self.DIRECTORY):
-        if os.path.isfile(os.path.join(self.DIRECTORY, file_name)):
-            file_names.append(file_name.split('.')[0])
-    return file_names
+    fileNames = []
+    for fileName in os.listdir(self.DIRECTORY):
+        if os.path.isfile(os.path.join(self.DIRECTORY, fileName)):
+            fileNames.append(fileName.split('.')[0])
+    return fileNames
   
   def processMissingData(self,dataset):
     try:
