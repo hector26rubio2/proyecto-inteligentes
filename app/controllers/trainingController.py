@@ -25,7 +25,12 @@ trainingService = TrainingService()
 @router.get("/listModel",
             status_code= status.HTTP_200_OK,
             response_model= dict)
+
 def listModels():
+    """
+    Este endpoint devuelve una lista de modelos disponibles.
+    :return: Un diccionario que contiene la lista de modelos.
+    """
     return trainingService.getModels()
 
 
@@ -33,12 +38,24 @@ def listModels():
             status_code= status.HTTP_200_OK,
             response_model= List[ModelTRES])
 def top3Models():
+    """
+    Este endpoint devuelve los tres mejores modelos basados en las mejores métricas de accuracy, recall y F1-score.
+    Los modelos son seleccionados en función de su desempeño en estas métricas.
+    :return: Una lista de los tres mejores modelos.
+    """
     return trainingService.getTop3Models()
 
 @router.post("/trainingModel",
             status_code= status.HTTP_200_OK,
             response_model= Union[ ModelTRES, Error])
 def trainingModel(trainingModel: TrainingModelDTO, response: Response):
+    """
+    Este endpoint se utiliza para entrenar un modelo utilizando los datos proporcionados.
+    :param trainingModel: Un objeto que contiene los datos y la configuración del modelo de entrenamiento.
+    :param response: La respuesta HTTP que se enviará al cliente.
+    :return: Si el entrenamiento se realiza correctamente, devuelve los detalles del modelo entrenado.
+             En caso contrario, devuelve un objeto de error con un mensaje descriptivo.
+    """
     modelDict = trainingModel.dict()
     codeStatus,msg,dataFrame= trainingService.getDataFrame(trainingModel.dataset)
     if codeStatus != 200 :
