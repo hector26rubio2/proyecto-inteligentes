@@ -5,83 +5,24 @@ Esta API proporciona endpoints para el procesamiento y análisis de conjuntos de
 
 ## Endpoints
 
-### 1. `/loadFile` (POST)
-- Descripción: Permite cargar un archivo de datos en formato `.xlsx` o `.csv`.
-- Parámetros:
-  - `file` (tipo: UploadFile) - El archivo a cargar.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `NameDatase`
-- Posibles errores:
-  - Código de estado: 400 Bad Request - Se espera un archivo con extensión `.xlsx` o `.csv`.
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+## Endpoints Disponibles
 
-### 2. `/descriptFile/{dataset}` (GET)
-- Descripción: Obtiene la descripción de un conjunto de datos.
-- Parámetros:
-  - `dataset` (tipo: str) - El nombre o identificador del conjunto de datos.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `dict`
-- Posibles errores:
-  - Código de estado: 404 Not Found - Conjunto de datos no encontrado.
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+1. **Cargar Archivo** (`/loadFile` - POST): Permite cargar un archivo de datos en formato `.xlsx` o `.csv`.
 
-### 3. `/datasets` (GET)
-- Descripción: Obtiene la lista de conjuntos de datos disponibles.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `List[str]`
-- Posibles errores:
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+2. **Describir Archivo** (`/descriptFile/{dataset}` - GET): Obtiene la descripción de un conjunto de datos específico.
 
-### 4. `/dataTreatment/{dataset}` (GET)
-- Descripción: Realiza el tratamiento de datos para un conjunto de datos específico.
-- Parámetros:
-  - `dataset` (tipo: str) - El nombre o identificador del conjunto de datos.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `NameDatase`
-- Posibles errores:
-  - Código de estado: 404 Not Found - Conjunto de datos no encontrado.
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+3. **Listar Conjuntos de Datos** (`/datasets` - GET): Obtiene la lista de conjuntos de datos disponibles.
 
-### 5. `/graphical/{dataset}` (GET)
-- Descripción: Realiza un análisis gráfico y estadístico de un conjunto de datos.
-- Parámetros:
-  - `dataset` (tipo: str) - El nombre o identificador del conjunto de datos.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `GraphicalAnalysis`
-- Posibles errores:
-  - Código de estado: 404 Not Found - Conjunto de datos no encontrado.
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+4. **Tratamiento de Datos** (`/dataTreatment/{dataset}` - GET): Realiza el tratamiento de datos para un conjunto de datos específico.
 
-### 6. `/listModel` (GET)
-- Descripción: Obtiene una lista de modelos disponibles.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `dict`
-- Posibles errores:
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+5. **Análisis Gráfico y Estadístico** (`/graphical/{dataset}` - GET): Realiza un análisis gráfico y estadístico de un conjunto de datos.
 
-### 7. `/top3Models` (GET)
-- Descripción: Obtiene los tres mejores modelos basados en las métricas de precisión, recall y F1-score.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `List[ModelTRES]`
-- Posibles errores:
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+6. **Listar Modelos** (`/listModel` - GET): Obtiene una lista de modelos disponibles.
 
-### 8. `/trainingModel` (POST)
-- Descripción: Entrena un modelo utilizando los datos proporcionados.
-- Parámetros:
-  - `trainingModel` (tipo: TrainingModelDTO) - Los datos y la configuración del modelo de entrenamiento.
-- Respuesta exitosa:
-  - Código de estado: 200 OK
-  - Modelo de respuesta: `Union[ModelTRES, Error]`
-- Posibles errores:
-  - Código de estado: 500 Internal Server Error - Error interno del servidor.
+7. **Top 3 Modelos** (`/top3Models` - GET): Obtiene los tres mejores modelos basados en métricas de precisión, recall y F1-score.
+
+8. **Entrenar Modelo** (`/trainingModel` - POST): Entrena un modelo utilizando los datos proporcionados.
+
 
 ## Requisitos
 
